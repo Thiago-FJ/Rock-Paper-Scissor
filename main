@@ -1,0 +1,77 @@
+import random
+
+J= 0
+C = 0
+E = 0
+
+def limpar():
+    print("\n" * 200)
+
+while True:
+    print("------------------------------------------")
+    print("          Vamos começar o jogo!")
+    P = input("Se desejar ver o placar digite [P], caso não, aperte enter")
+    if (P == "P") or (P == "p"):
+        print("PLACAR")
+        print("JOGADOR:", J)
+        print("COMPUTADOR:", C)
+        print("EMPATE:", E)
+    print("------------------------------------------")
+    print("Qual a sua jogada?")
+    print(" Digite [0] para PEDRA")
+    print(" Digite [2] para PAPEL")
+    print(" Digite [5] para TESOURA")
+    print("------------------------------------------")
+
+    # decisão do jogador
+    p1 = int(input())
+    while (p1 != 0) and (p1 != 2) and (p1 != 5):
+        print("A OPÇÃO DIGITADA NÃO EXISTE, JOGUE NOVAMENTE")
+        p1 = int(input())
+
+    # decisão do pc
+    p2 = random.randint(0, 5)
+    while (p2 != 0) and (p2 != 2) and (p2 != 5):
+        p2 = random.randint(1, 5)
+    limpar()
+
+    # transforma os números no itens correspondentes
+    if p1 == 0:
+        T1 = "Pedra"
+    elif p1 == 2:
+        T1 = "Papel"
+    else:
+        T1 = "Tesoura"
+
+    if p2 == 0:
+        T2 = "Pedra"
+    elif p2 == 2:
+        T2 = "Papel"
+    else:
+        T2 = "Tesoura"
+
+    # pré anuncio do resultado
+    print("PEDRA\n PAPEL\n TESOURA!!")
+    print("O jogador escolheu", T1)
+    print("O computador escolheu", T2)
+
+    # decisão e anuncio do resultado
+    if ((p1 == 0) and (p2 == 5)) or ((p1 == 2) and (p2 == 0)) or ((p1 == 5) and (p2 == 2)):
+        print("O jogador é o ganhador! Parabéns")
+        J += 1
+    elif ((p2 == 0) and (p1 == 5)) or ((p2 == 2) and (p1 == 0)) or ((p2 == 5) and (p1 == 2)):
+        print("O computador é o ganhador! Parabéns")
+        C += 1
+    else:
+        print("Deu empate!")
+        E += 1
+    print("------------------------------------------")
+    print("Você deseja jogar de novo?")
+    print("Se sim, digite [S]")
+    print("Se não, digite [N]")
+    R = input()
+    if (R == "N") or (R == "n"):
+        print("Jogo encerrado")
+        break
+    else:
+        limpar()
